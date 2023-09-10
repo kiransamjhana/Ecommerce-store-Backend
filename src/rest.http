@@ -1,0 +1,10 @@
+@rootAPI = http://localhost:8200/api/v1/store
+
+### get all categories
+GET {{rootAPI}}/catagory
+
+
+
+### get all the product
+
+GET {{rootAPI}}/product

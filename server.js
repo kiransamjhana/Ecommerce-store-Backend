@@ -3,7 +3,8 @@ dotenv.config();
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-
+import productRouter from "./src/router/productRouter.js";
+import catagoryRouter from "./src/router/categoryRouter.js";
 import connectMongoDB from "./src/config/mongoconfig.js";
 connectMongoDB();
 
@@ -15,6 +16,9 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
+//apis
+app.use("/api/v1/store/product", productRouter);
+app.use("/api/v1/store/catagory", catagoryRouter);
 app.get("/", (req, res) => {
   res.json({
     status: "sucess",
