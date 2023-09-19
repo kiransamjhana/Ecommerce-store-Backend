@@ -5,7 +5,9 @@ import morgan from "morgan";
 import cors from "cors";
 import productRouter from "./src/router/productRouter.js";
 import catagoryRouter from "./src/router/categoryRouter.js";
+import paymentRouter from "./src/router/paymentOption.js";
 import connectMongoDB from "./src/config/mongoconfig.js";
+
 connectMongoDB();
 
 const PORT = process.env.PORT || 8200;
@@ -19,6 +21,7 @@ app.use(express.json());
 //apis
 app.use("/api/v1/store/product", productRouter);
 app.use("/api/v1/store/catagory", catagoryRouter);
+app.use("/api/v1/store/payment", paymentRouter);
 app.get("/", (req, res) => {
   res.json({
     status: "sucess",
