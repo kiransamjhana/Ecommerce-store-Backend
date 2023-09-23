@@ -14,6 +14,7 @@ router.get("/", async (req, res, next) => {
       message: "Here are the list of payment options",
       result,
     });
+    console.log(result);
   } catch (error) {
     next(error);
   }
