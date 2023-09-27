@@ -15,15 +15,15 @@ export const createAcessJWT = async (email) => {
 export const verifiyAccessJWT = (token) => {
   return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 };
-export const createRefreshJWT = async (email) => {
-  const refreshJWT = jwt.sign({ email }, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: "30d",
-  });
+// export const createRefreshJWT = async (email) => {
+//   const refreshJWT = jwt.sign({ email }, process.env.JWT_REFRESH_SECRET, {
+//     expiresIn: "30d",
+//   });
 
-  const dt = await updateAdmin({ email }, { refreshJWT });
+//   const dt = await updateUser({ email }, { refreshJWT });
 
-  return refreshJWT;
-};
+//   return refreshJWT;
+// };
 
 export const verifiyRefreshJWT = (token) => {
   return jwt.verify(token, process.env.JWT_REFRESH_SECRET);

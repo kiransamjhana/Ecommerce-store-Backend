@@ -10,6 +10,7 @@ export const auth = async (req, res, next) => {
   try {
     //get the access JWT from frontedn
     const { authorization } = req.headers;
+    console.log(authorization);
     // Decode the jwt
 
     const decoded = verifiyAccessJWT(authorization);

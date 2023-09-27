@@ -1,5 +1,21 @@
 @rootAPI = http://localhost:8200/api/v1/store
 
+
+### post user
+POST {{rootAPI}}/user 
+Content-Type: application/json
+
+{
+    "fName":"kiran",
+    "lName":"manandhar",
+    "phone":"1555555",
+    "password":"dkkdkdd",
+"email":"manandharkiran90@gmail.com",
+"address":"dkdkdk"
+}
+
+
+
 ### get all categories
 GET {{rootAPI}}/catagory
 

@@ -1,9 +1,10 @@
 import express from "express";
-import { insertUser } from "../model/userModel";
-import { newUserValidation } from "../middleaware/joyvalidation";
-import { hashPassword } from "../helpers/bycrypt";
-import { accountVerificationEmail } from "../helpers/nodemailer";
-
+import { insertUser } from "../model/userModel.js";
+import { newUserValidation } from "../middleaware/joyvalidation.js";
+import { hashPassword } from "../helpers/bycrypt.js";
+import { accountVerificationEmail } from "../helpers/nodemailer.js";
+import { auth } from "../middleaware/authMiddleware.js";
+import { v4 as uuidv4 } from "uuid";
 const router = express.Router();
 
 //get admin details
@@ -20,7 +21,7 @@ router.get("/", (req, res, next) => {
 });
 
 //post user
-router.post("/", auth, newUserValidation, async (req, res, next) => {
+router.post("/", newUserValidation, async (req, res, next) => {
   try {
     const { password } = req.body;
     req.body.password = hashPassword(password);
