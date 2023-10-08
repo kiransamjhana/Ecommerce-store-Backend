@@ -41,7 +41,7 @@ please follow the link below to activate your account.
 
 <p>
     Regareds, <br />
-    EST Store <br />
+Manandhar Store <br />
     Customer Support Team
 </p>
     

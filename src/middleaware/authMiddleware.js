@@ -1,7 +1,7 @@
 import {
   createAcessJWT,
-  verifiyAccessJWT,
   verifiyRefreshJWT,
+  verifyAccessJWT,
 } from "../helpers/jwt.js";
 
 import { getOneUser, getUserByEmail } from "../model/userModel.js";
@@ -13,10 +13,11 @@ export const auth = async (req, res, next) => {
     console.log(authorization);
     // Decode the jwt
 
-    const decoded = verifiyAccessJWT(authorization);
+    const decoded = verifyAccessJWT(authorization);
     // extract the email and get user by email
     if (decoded?.email) {
       const user = await getUserByEmail(decoded.email);
+      console.log(user);
 
       if (user?._id && user?.status === "active") {
         user.refreshJWT = undefined;
@@ -50,6 +51,7 @@ export const refreshAuth = async (req, res, next) => {
     const { authorization } = req.headers;
 
     const decoded = verifiyRefreshJWT(authorization);
+
     //make sure token exist in database
     if (decoded?.email) {
       const user = await getOneUser({

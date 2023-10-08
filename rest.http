@@ -10,9 +10,25 @@ Content-Type: application/json
     "lName":"manandhar",
     "phone":"1555555",
     "password":"dkkdkdd",
-"email":"manandharkiran90@gmail.com",
+"email":"kiranmanandhar956@gmail.com",
 "address":"dkdkdk"
 }
+
+### post user
+POST {{rootAPI}}/user/login 
+Content-Type: application/json
+
+{
+   
+    "password":"123456",
+"email":"ha@yahoo.com"
+
+}
+
+### post user
+GET  {{rootAPI}}/user
+Content-Type: application/json
+
 
 
 
