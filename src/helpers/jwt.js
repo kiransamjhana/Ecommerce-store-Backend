@@ -7,7 +7,7 @@ export const createAcessJWT = async (email) => {
   console.log("JWT_ACCESS_SECRET:", process.env.JWT_ACCESS_SECRET);
   try {
     const token = jwt.sign({ email }, process.env.JWT_ACCESS_SECRET, {
-      expiresIn: "30m",
+      expiresIn: "3m",
     });
 
     console.log("Token before verification:", token); // Log the token
@@ -21,12 +21,18 @@ export const createAcessJWT = async (email) => {
     await insertNewSession({ token, associate: email });
 
     console.log("Token created successfully:", token);
+    99;
 
     return token;
   } catch (error) {
     console.error("Error creating access JWT:", error);
     throw new Error("Failed to create access token");
   }
+};
+
+export const verifyAccessJWT = (token) => {
+  console.log("token before verify", token);
+  return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 };
 
 export const createRefreshJWT = async (email) => {
@@ -39,15 +45,6 @@ export const createRefreshJWT = async (email) => {
   return refreshJWT;
 };
 
-export const verifyAccessJWT = (token) => {
-  console.log("token before verify", token);
-  try {
-    return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-  } catch (error) {
-    console.error("Error verifying access JWT:", error);
-    throw new Error("Invalid access token");
-  }
-};
 // export const createRefreshJWT = async (email) => {
 //   const refreshJWT = jwt.sign({ email }, process.env.JWT_REFRESH_SECRET, {
 //     expiresIn: "30d",

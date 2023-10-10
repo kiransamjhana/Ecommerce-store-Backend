@@ -9,11 +9,11 @@ import { getOneUser, getUserByEmail } from "../model/userModel.js";
 export const auth = async (req, res, next) => {
   try {
     //get the access JWT from frontedn
-    const { authorization } = req.headers;
-    console.log(authorization);
+    const token = req.headers.authorization;
+    console.log("from auth", req.headers);
     // Decode the jwt
 
-    const decoded = verifyAccessJWT(authorization);
+    const decoded = verifyAccessJWT(token);
     // extract the email and get user by email
     if (decoded?.email) {
       const user = await getUserByEmail(decoded.email);
@@ -49,7 +49,7 @@ export const auth = async (req, res, next) => {
 export const refreshAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
-
+    console.log("from refreshauth", authorization);
     const decoded = verifiyRefreshJWT(authorization);
 
     //make sure token exist in database
