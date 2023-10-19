@@ -21,9 +21,22 @@ import { createAcessJWT, createRefreshJWT } from "../helpers/jwt.js";
 const router = express.Router();
 
 //get admin details
-router.get("/", auth, async (req, res, next) => {
-  const user = await getUsers();
+router.get("/", async (req, res, next) => {
   try {
+    res.json({
+      status: "success",
+      message: "Here are the user INfo",
+      user: req.userInfo,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/get-users", auth, async (req, res, next) => {
+  try {
+    const user = await getUsers();
+
     res.json({
       status: "success",
       message: "Here are the user INfo",

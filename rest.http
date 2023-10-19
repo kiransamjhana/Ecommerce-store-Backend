@@ -15,18 +15,13 @@ Content-Type: application/json
 }
 
 ### post user
-POST {{rootAPI}}/user/login 
+GET  {{rootAPI}}/user/login
 Content-Type: application/json
 
-{
-   
-    "password":"123456",
-"email":"ha@yahoo.com"
 
-}
 
 ### post user
-GET  {{rootAPI}}/user
+GET  {{rootAPI}}/user/get-users
 Content-Type: application/json
 
 
