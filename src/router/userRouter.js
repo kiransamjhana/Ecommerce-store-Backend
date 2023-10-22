@@ -21,13 +21,14 @@ import { createAcessJWT, createRefreshJWT } from "../helpers/jwt.js";
 const router = express.Router();
 
 //get admin details
-router.get("/", async (req, res, next) => {
+router.get("/", auth, async (req, res, next) => {
   try {
     res.json({
       status: "success",
       message: "Here are the user INfo",
       user: req.userInfo,
     });
+    console.log(user);
   } catch (error) {
     next(error);
   }
@@ -149,7 +150,7 @@ router.post("/login", loginValidation, async (req, res, next) => {
         const refreshJWT = await createRefreshJWT(email);
         return res.json({
           status: "success",
-          message: "Logedin successfully",
+          message: "Logged In successfully",
           token: { accessJWT, refreshJWT },
         });
       }
