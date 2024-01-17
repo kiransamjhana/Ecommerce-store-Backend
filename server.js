@@ -8,6 +8,7 @@ import catagoryRouter from "./src/router/categoryRouter.js";
 import paymentRouter from "./src/router/paymentOption.js";
 import userRouter from "./src/router/userRouter.js";
 import stripeRouter from "./src/router/stripeRouter.js";
+import orderRouter from "./src/router/orderRouter.js";
 
 import connectMongoDB from "./src/config/mongoconfig.js";
 
@@ -27,6 +28,7 @@ app.use("/api/v1/store/catagory", catagoryRouter);
 app.use("/api/v1/store/payment", paymentRouter);
 app.use("/api/v1/store/user", userRouter);
 app.use("/api/v1/store/payment-intent", stripeRouter);
+app.use("/api/v1/store/order", orderRouter);
 
 app.get("/", (req, res) => {
   res.json({

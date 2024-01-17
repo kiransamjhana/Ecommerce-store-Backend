@@ -39,3 +39,9 @@ GET {{rootAPI}}/product/category/64cf22746d42008d63a59392
 ### get all the payment Options
 
 GET {{rootAPI}}/payment/
+
+
+
+### 
+POST {{rootAPI}}/
+
