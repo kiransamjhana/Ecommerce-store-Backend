@@ -4,9 +4,30 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { amount, currency, status } = req.body;
-    console.log(req.body);
-    const result = await insertOrder(amount, currency, status);
+    // const {
+    //   name,
+    //   email,
+    //   phone,
+    //   address,
+    //   status,
+
+    //   currency,
+    //   payment_method,
+    //   amount,
+    // } = req.body;
+    // const dta = {
+    //   name,
+    //   email,
+    //   phone,
+    //   address,
+    //   status,
+
+    //   currency,
+    //   payment_method,
+    //   amount,
+    // };
+
+    const result = await insertOrder(req.body);
     result?._id
       ? res.json({
           status: "success",

@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
     },
-    fName: {
+    name: {
       type: String,
     },
 
@@ -25,6 +25,18 @@ const orderSchema = new mongoose.Schema(
     },
 
     amount: {
+      type: String,
+      required: true,
+    },
+    payment_method: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    transId: {
       type: String,
       required: true,
     },
