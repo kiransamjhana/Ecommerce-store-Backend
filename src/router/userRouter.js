@@ -28,7 +28,6 @@ router.get("/", auth, async (req, res, next) => {
       message: "Here are the user INfo",
       user: req.userInfo,
     });
-    console.log(user);
   } catch (error) {
     next(error);
   }

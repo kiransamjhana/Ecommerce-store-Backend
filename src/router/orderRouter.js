@@ -1,5 +1,9 @@
 import express from "express";
-import { insertOrder } from "../model/orderModel.js";
+import {
+  getOrderByEmail,
+  getOrders,
+  insertOrder,
+} from "../model/orderModel.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -28,6 +32,7 @@ router.post("/", async (req, res) => {
     // };
 
     const result = await insertOrder(req.body);
+    console.log(result);
     result?._id
       ? res.json({
           status: "success",
@@ -43,3 +48,30 @@ router.post("/", async (req, res) => {
 });
 
 export default router;
+
+//getmethod
+router.get("/", async (req, res) => {
+  try {
+    const order = await getOrders();
+    res.json({
+      status: "success",
+      message: "Here is order the list of orders",
+      order,
+    });
+  } catch (error) {
+    error;
+  }
+});
+
+// router.get("/email-user", async (req, res) => {
+//   try {
+//     const email = req.params;
+//     console.log(req.params);
+//     const order = await getOrderByEmail(email);
+//     res.json({
+//       status: "success",
+//       message: "Here is order associated with the email",
+//       order,
+//     });
+//   } catch (error) {
+//     error;

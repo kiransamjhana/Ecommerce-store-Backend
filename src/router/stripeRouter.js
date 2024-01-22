@@ -17,7 +17,9 @@ router.post("/", async (req, res) => {
       currency,
       payment_method_types: [paymentMethodType],
     });
-    return res.json({ clientSecret: paymentIntent.client_secret });
+    return res.json({
+      clientSecret: paymentIntent.client_secret,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

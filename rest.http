@@ -43,5 +43,7 @@ GET {{rootAPI}}/payment/
 
 
 ### 
-POST {{rootAPI}}/
+
+GET  {{rootAPI}}/order/email-user/ram@yahoo.com
+
 

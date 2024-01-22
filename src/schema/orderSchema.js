@@ -2,15 +2,23 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
-    status: {
+    orderStatus: {
       type: String,
+      default: "pending",
     },
+    paymentStatus: {
+      type: String,
+      required: true,
+    },
+
     name: {
       type: String,
+      required: true,
     },
 
     phone: {
       type: String,
+      required: true,
     },
     currency: {
       type: String,
@@ -18,8 +26,6 @@ const orderSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-
-      unique: true,
 
       index: 1,
     },
@@ -39,6 +45,7 @@ const orderSchema = new mongoose.Schema(
     transId: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   {
