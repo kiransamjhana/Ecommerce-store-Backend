@@ -10,18 +10,17 @@ export const auth = async (req, res, next) => {
   try {
     //get the access JWT from frontedn
     const token = req.headers.authorization;
-    console.log("from auth", req.headers);
+
     // Decode the jwt
 
     const decoded = verifyAccessJWT(token);
     // extract the email and get user by email
     if (decoded?.email) {
       const user = await getUserByEmail(decoded.email);
-      console.log(user);
 
       if (user?._id && user?.status === "active") {
         user.refreshJWT = undefined;
-        user.password = undefined;
+        // u;ser.password = undefined
 
         req.userInfo = user;
         return next();
@@ -49,7 +48,7 @@ export const auth = async (req, res, next) => {
 export const refreshAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
-    console.log("from refreshauth", authorization);
+
     const decoded = verifiyRefreshJWT(authorization);
 
     //make sure token exist in database
@@ -60,8 +59,8 @@ export const refreshAuth = async (req, res, next) => {
       });
 
       if (user?._id && user?.status === "active") {
-        user.refreshJWT = undefined;
-        user.password = undefined;
+        // user.refreshJWT = undefined;
+        // user.password = undefined;
         const accessJWT = await createAcessJWT(decoded.email);
 
         return res.json({

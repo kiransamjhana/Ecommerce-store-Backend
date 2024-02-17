@@ -17,12 +17,12 @@ export const getUsers = () => {
   return userSchema.find();
 };
 
-export const updateAdminById = ({ _id, ...rest }) => {
+export const updateUserById = ({ _id, ...rest }) => {
   return userSchema.findByIdAndUpdate(_id, rest);
 }; //afilter
 export const updateUser = (filter, updateObj) => {
   return userSchema.findOneAndUpdate(filter, updateObj, { new: true });
 };
-export const deleteAdminById = (_id) => {
+export const deleteUserById = (_id) => {
   return userSchema.findByIdAndDelete(_id);
 };

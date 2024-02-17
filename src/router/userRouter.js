@@ -4,6 +4,7 @@ import {
   getUsers,
   insertUser,
   updateUser,
+  updateUserById,
 } from "../model/userModel.js";
 import {
   loginValidation,
@@ -18,6 +19,7 @@ import {
 import { auth, refreshAuth } from "../middleaware/authMiddleware.js";
 import { v4 as uuidv4 } from "uuid";
 import { createAcessJWT, createRefreshJWT } from "../helpers/jwt.js";
+import { deleteNewSession } from "../model/session/sessionModel.js";
 const router = express.Router();
 
 //get admin details
@@ -166,5 +168,23 @@ router.post("/login", loginValidation, async (req, res, next) => {
 
 //return the refreshJWT
 router.get("/get-accessjwt", refreshAuth);
+
+router.post("/logout", async (req, res, next) => {
+  try {
+    const { accessJWT, refreshJWT, _id } = req.body;
+
+    accessJWT && deleteNewSession(accessJWT);
+
+    if (refreshJWT && _id) {
+      const dt = await updateUserById({ _id, refreshJWT: "" });
+    }
+
+    res.json({
+      status: "success",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;

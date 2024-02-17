@@ -1,35 +1,45 @@
 import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const orderSchema = new mongoose.Schema(
   {
-    orderStatus: {
-      type: String,
-      default: "pending",
-    },
-    paymentStatus: {
+    payStatus: {
       type: String,
       required: true,
     },
 
+    orderStatus: {
+      type: String,
+      default: "received",
+    },
+    userId: {
+      type: String,
+    },
     name: {
       type: String,
       required: true,
     },
-
+    products: [
+      {
+        productId: {
+          type: String,
+        },
+        quantity: {
+          type: String,
+        },
+      },
+    ],
     phone: {
       type: String,
       required: true,
     },
     currency: {
       type: String,
-      default: "",
     },
     email: {
       type: String,
-
       index: 1,
     },
-
     amount: {
       type: String,
       required: true,
@@ -53,4 +63,4 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Order", orderSchema); // create order table
+export default mongoose.model("Order", orderSchema);

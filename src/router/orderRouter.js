@@ -5,45 +5,29 @@ import {
   insertOrder,
 } from "../model/orderModel.js";
 const router = express.Router();
-
 router.post("/", async (req, res) => {
   try {
-    // const {
-    //   name,
-    //   email,
-    //   phone,
-    //   address,
-    //   status,
-
-    //   currency,
-    //   payment_method,
-    //   amount,
-    // } = req.body;
-    // const dta = {
-    //   name,
-    //   email,
-    //   phone,
-    //   address,
-    //   status,
-
-    //   currency,
-    //   payment_method,
-    //   amount,
-    // };
-
     const result = await insertOrder(req.body);
+
     console.log(result);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: " New Order Has been Placed",
-        })
-      : res.json({
-          status: "error",
-          message: " Unable to process the order",
-        });
+
+    if (result && result._id) {
+      res.json({
+        status: "success",
+        message: "New Order Has been Placed",
+      });
+    } else {
+      res.json({
+        status: "error",
+        message: "Unable to process the order",
+      });
+    }
   } catch (error) {
-    error;
+    console.error("Error in the /POST route:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal Server Error",
+    });
   }
 });
 

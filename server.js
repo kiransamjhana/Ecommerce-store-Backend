@@ -11,6 +11,7 @@ import stripeRouter from "./src/router/stripeRouter.js";
 import orderRouter from "./src/router/orderRouter.js";
 
 import connectMongoDB from "./src/config/mongoconfig.js";
+import { auth } from "./src/middleaware/authMiddleware.js";
 
 connectMongoDB();
 
